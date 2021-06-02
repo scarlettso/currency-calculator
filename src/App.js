@@ -2,15 +2,19 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import CurrencyRow from './CurrencyRow'
 
-const BASE_URL = 'https://openexchangerates.org/api/latest.json?app_id=ebdc8af2309c4a7f82763d05a524311f'
+//api url
+const api_url = 'https://openexchangerates.org/api/latest.json?app_id=ebdc8af2309c4a7f82763d05a524311f'
 
 function App() {
-  const [currencyOptions, setCurrencyOptions] = useState([])
+  //return a stateful value
+
+  const [currencyOptions, setCurrencyOptions] = useState(0)
 
   useEffect(() => {
-    fetch(BASE_URL)
+    fetch(api_url)
     .then(res => res.json())
     .then(data => {
+      //setCurrencyOptions function to update the state
       setCurrencyOptions([data.base, ...Object.keys(data.rates)])
     })
   }, [])
@@ -18,16 +22,19 @@ function App() {
   console.log('api:')
   console.log(currencyOptions)
   return (
-    <>
-      <h1>Convert</h1>
+    <div>
+      <h1>Currency Calculator</h1>
       <CurrencyRow 
       currencyOptions = {currencyOptions}
       />
-      <div className = "equals"> =</div>
-      currencyOptions = {currencyOptions}
-      <CurrencyRow />
 
-    </>
+      <div className = "equals"> = </div>
+      
+      <CurrencyRow
+      currencyOptions = {currencyOptions}
+      />
+
+    </div>
   );
 }
 

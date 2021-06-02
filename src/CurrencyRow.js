@@ -1,24 +1,21 @@
 import React from 'react'
 
-export default function CurrencyRow() {
-    console.log('props')
-    console.log(props)
-    console.log(typeof props)
+//using props to pass data from App.js to the file
+export default function CurrencyRow(props) {
+
     const {currencyOptions} = props
-    let currOpt = Array.from(props)
-    console.log('currOPT...')
-    console.log(currOpt)
-    console.log(typeof currOpt)
-    console.log('currencyOptions')
-    console.log(currencyOptions)
-    console.log(typeof currencyOptions)
+    console.log(props)
+    console.log(props[0]) //bug-->undifined
+
     return (
         <div>
             <input type = "number" className = "input" />
-            <select>
-                for (let i = 0; i < 10; i++){
-                    <option key = {currencyOptions[i]} value = {currencyOptions[i]}>{currencyOptions[i]}</option>
-                }
+            <select name = "currencyOptions" id = "currencyOptions">
+
+                {/* for (var i = 0; i = 10; i++){
+                    <option value = {props[i]}>{props[i]}</option>
+                } */}
+                <option value = "Currency">Currency</option>
                
             </select>
         </div>
